@@ -14,7 +14,7 @@
 3. Press next and finish
 
 ### Step 4: Finish your assignment
-0. Read `Instruction.md` for tasks to complete.
+0. Read [Instruction.md](./Instruction.md) for tasks to complete.
 1. `src/main/java/ca/ciccc/SeatingChart.java`
    - Source files (Check Todo)
 2. Test files
