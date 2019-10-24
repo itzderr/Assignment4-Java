@@ -29,7 +29,16 @@ public class SeatingChart {
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
-
+        seats = new Student[rows][cols];
+        int i = 0;
+        for (int indexCol = 0; indexCol < cols; indexCol++) { // run the cols and check empty spaces
+            for (int indexRow = 0; indexRow < rows; indexRow++) { // run de rows and check empty spaces
+                if (i < studentList.size()) { // if the index is less than 1 like as index[0]
+                    seats[indexRow][indexCol] = studentList.get(i); // checking all seats
+                    i++;
+                }
+            }
+        }
     }
 
     /**
@@ -47,7 +56,16 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
+    int numRem = 0;
+        for (int row = 0; row < seats.length; row++) {
+            for (int col = 0; col < seats[row].length; col++) {
+                Student stud = seats[row][col];
+                if (stud != null && stud.getAbsenceCount() > allowedAbsences) {
+                    seats[row][col] = null;
+                    numRem++;
+                }
+            }
+        }
 
         return 0;
     }
