@@ -33,7 +33,9 @@ public class TestSeatingChart {
                         STUDENT_LIST,
 
                         // output - expectedSeatingChart
-                        "Karen(3) Lester(1) Glen(2) Danny(3) \nLiz(1) Henry(5) Fran(6) null \nPaul(4) Renee(9) David(1) null \n",
+                                "Karen(3) Lester(1) Glen(2) Danny(3) \n" +
+                                "Liz(1) Henry(5) Fran(6) null \n" +
+                                "Paul(4) Renee(9) David(1) null \n",
                     },
         });
     }
