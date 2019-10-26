@@ -28,8 +28,21 @@ public class SeatingChart {
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
-
+        if(studentList == null) throw new IllegalArgumentException("students list shouldn't be null.");
+        if(rows <= 0) throw new IllegalArgumentException("rows count should be greater than zero.");
+        if(cols <= 0) throw new IllegalArgumentException("cols count should be greater than zero.");
+        if(rows * cols < studentList.size()) throw new IllegalArgumentException("rows*cols should be greater or equal to the students list size.");
+        
+        seats = new Student[rows][cols];//Array object are initialized with null.
+        int i=0,j=0;
+        for(Student st : studentList) {
+        	seats[i][j] = st;
+        	i++;
+        	if(i >= rows) {
+        		i=0;
+        		j++;
+        	}
+        }
     }
 
     /**
@@ -47,9 +60,19 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
-
-        return 0;
+    	int i=0,j, removedCount=0;
+        for(Student[] row : seats) {
+        	j=0;
+        	for(Student st : row) {
+        		if(st != null && st.getAbsenceCount() > allowedAbsences) {
+        			seats[i][j] = null;
+        			removedCount++;
+        		}
+        		j++;
+        	}
+        	i++;
+        }
+        return removedCount;
     }
 
     @Override
