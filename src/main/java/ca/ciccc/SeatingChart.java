@@ -29,8 +29,17 @@ public class SeatingChart {
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
-
-    }
+       seats = new Student[rows][cols];
+            int number = 0;
+            for (int i = 0; i < cols; i++) {
+                for (int j =0; j < rows; j++){
+                    if(number < studentList.size()){
+                        seats[j][i] = studentList.get(number);
+                        number++;
+                    }
+                }
+            }
+        }
 
     /**
      * Removes students who have more than a given number of absences from the seating chart,
@@ -49,7 +58,19 @@ public class SeatingChart {
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
 
-        return 0;
+        int removedNumber = 0;
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats[i].length; j++) {
+                if(seats[i][j] == null) {
+                    continue;
+                }
+                if (seats[i][j].getAbsenceCount() > allowedAbsences){
+                    seats[i][j] = null;
+                removedNumber++;
+                }
+            }
+        }
+        return removedNumber;
     }
 
     @Override
