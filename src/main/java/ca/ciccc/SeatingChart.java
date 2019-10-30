@@ -67,7 +67,7 @@ public class SeatingChart {
             }
         }
 
-        return 0;
+        return numRem;
     }
 
     @Override
