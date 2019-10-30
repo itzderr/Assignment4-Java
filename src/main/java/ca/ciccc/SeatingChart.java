@@ -58,8 +58,28 @@ public class SeatingChart {
      */
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
+        int absentedStudentCount = 0;
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats[i].length; j++) {
+                if (seats[i][j] != null && seats[i][j].getAbsenceCount() > allowedAbsences) {
+                    seats[i][j] = null;
+                    absentedStudentCount++;
+                }
+            }
+        }
 
-        return 0;
+        // It's gonna be called by value so the original variable(array) couldn't be changed.
+        // for (Student[] students : seats) {
+        //     System.out.println(Arrays.toString(students));
+        //     for (Student student : students) {
+        //         System.out.println(student);
+        //         if (student != null && student.getAbsenceCount() > allowedAbsences) {
+        //             student = null;
+        //             absentedStudentCount++;
+        //         }
+        //     }
+        // }
+        return absentedStudentCount;
     }
 
     @Override
