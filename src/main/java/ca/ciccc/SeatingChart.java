@@ -68,14 +68,14 @@ public class SeatingChart {
         // TODO: your code goes here.
 
             int numOfStudents =0;
-            int faltas = 0;
+            int abscents = 0;
             String n = "";
 
 
         for (int i = 0; i <seats.length ; i++) {
             for (int j = 0; j < seats.length ; j++) {
-                faltas = seats[j][i].getAbsenceCount();
-                if(faltas> allowedAbsences){
+                abscents = seats[j][i].getAbsenceCount();
+                if(abscents> allowedAbsences){
                     seats[j][i] = null;
                     numOfStudents ++;
                 }
