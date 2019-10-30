@@ -28,8 +28,10 @@ public class SeatingChart {
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
-
+        seats = new Student[rows][cols];
+        for (int i = 0; i < studentList.size(); i++) {
+            seats[i % rows][i / rows] = studentList.get(i);
+        }
     }
 
     /**
