@@ -15,7 +15,7 @@ public class Student {
         this("#TEST", name, absenceCount);
     }
 
-    public Student(String id, String name, int absenceCount) {
+    private Student(String id, String name, int absenceCount) {
         this.id = id;
         this.name = name;
         this.absenceCount = absenceCount;
@@ -37,7 +37,7 @@ public class Student {
         this.name = name;
     }
 
-    public int getAbsenceCount() {
+    int getAbsenceCount() {
         return absenceCount;
     }
 

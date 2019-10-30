@@ -28,7 +28,18 @@ public class SeatingChart {
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
+        seats = new Student[rows][cols];
+
+        int f = 0;
+        int c = 0;
+        for (int i = 0; i < studentList.size(); i++) {
+            if (i % rows == 0 && rows <= i) {
+                c++;
+                f = 0;
+            }
+            seats[f][c] = studentList.get(i);
+            f++;
+        }
 
     }
 
@@ -47,20 +58,33 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
+        int rs = 0;
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats[i].length; j++) {
 
-        return 0;
+
+                if (seats[i][j] == null)
+                    continue;
+                if (allowedAbsences < seats[i][j].getAbsenceCount()) {
+                    seats[i][j] = null;
+                    rs ++;
+                }
+            }
+        }
+
+
+        return rs;
     }
 
     @Override
     public String toString() {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for(Student[] row: seats) {
             for(Student col: row) {
-                result += (col != null) ? col.toString() + " " : "null ";
+                result.append((col != null) ? col.toString() + " " : "null ");
             }
-            result += "\n";
+            result.append("\n");
         }
-        return result;
+        return result.toString();
     }
 }
