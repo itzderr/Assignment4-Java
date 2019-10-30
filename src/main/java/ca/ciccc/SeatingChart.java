@@ -29,17 +29,15 @@ public class SeatingChart {
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
-        if ( rows > 0 && cols > 0 && (rows * cols) >= studentList.size()){
-            seats = new Student[rows][cols];
-            int count = 0;
-            for (int i =0; i < cols; i++) {
-                for (int j =0; j < cols-1; j++){
-                    if ( count <= studentList.size()-1){
-                        seats[j][i] = studentList.get(count);
-                    } else {
-                        seats[j][i] = null;
-                    }
-                     count ++;
+        seats = new Student[rows][cols];
+        int count = 0;
+        for (int i =0; i < cols; i++) {
+            for (int j =0; j < rows; j++){
+                if ( count <= studentList.size()-1){
+                    seats[j][i] = studentList.get(count);
+                    count ++;
+                } else {
+                    seats[j][i] = null;
                 }
             }
         }
