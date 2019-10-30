@@ -29,6 +29,16 @@ public class SeatingChart {
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
+        seats = new Student[rows][cols];
+        int n = 0;
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+                if (n < studentList.size()) {
+                    seats[j][i] = studentList.get(n);
+                    n++;
+                }
+            }
+        }
 
     }
 
