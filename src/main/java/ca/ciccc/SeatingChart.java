@@ -49,9 +49,19 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
-
-        return 0;
+        int count = 0;
+        for (int row = 0; row < seats.length; row++) {
+            for (int col = 0; col < seats[0].length; col++) {
+                if (seats[row][col] == null) {
+                    break;
+                }
+                if (seats[row][col].getAbsenceCount() > allowedAbsences) {
+                    seats[row][col] = null;
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     @Override
