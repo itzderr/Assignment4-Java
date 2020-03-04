@@ -21,6 +21,10 @@ public class Student {
         this.absenceCount = absenceCount;
     }
 
+    public Student() {
+
+    }
+
     public String getId() {
         return id;
     }
