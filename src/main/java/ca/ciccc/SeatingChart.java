@@ -1,6 +1,8 @@
 package ca.ciccc;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class SeatingChart {
 
@@ -28,8 +30,18 @@ public class SeatingChart {
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
-
+        this.seats = new Student[rows][cols];
+        int i =0;
+        for (int y = 0; y < cols ; y++){
+            for (int x = 0; x < rows ; x++){
+                if (i< studentList.size()){
+                    this.seats[x][y]= studentList.get(i);
+                    i++;
+                }else{
+                    this.seats[x][y]= null;
+                }
+            }
+        }
     }
 
     /**
@@ -47,9 +59,18 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
-
-        return 0;
+        int rows = this.seats.length;
+        int cols = this.seats[0].length;
+        int remove = 0;
+        for(int x = 0; x <= rows -1 ; x++){
+            for(int y = 0; y <= cols -1 ; y++){
+                if (!(seats[x][y]==null) && seats[x][y].getAbsenceCount()> allowedAbsences){
+                    seats[x][y] = null;
+                    remove++;
+                }
+            }
+        }
+        return remove;
     }
 
     @Override
