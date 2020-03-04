@@ -30,6 +30,19 @@ public class SeatingChart {
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
 
+        this.seats = new Student[rows][cols];
+
+        int i = 0;
+        for (int y = 0; y < cols; y++) {
+            for (int x = 0; x < rows; x++) {
+                if (i < studentList.size()) {
+                    this.seats[x][y] = studentList.get(i);
+                    i++;
+                } else {
+                    this.seats[x][y] = null;
+                }
+            }
+        }
     }
 
     /**
@@ -49,7 +62,20 @@ public class SeatingChart {
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
 
-        return 0;
+        int rows = this.seats.length;
+        int cols = this.seats[0].length;
+
+        int remove = 0;
+
+        for (int x = 0; x < rows; x++){
+            for (int z = 0; z < cols; z++){
+                if (seats[x][z] != null && seats[x][z].getAbsenceCount() > allowedAbsences) {
+                    seats[x][z] = null;
+                    remove = remove + 1;
+                }
+            }
+        }
+        return remove;
     }
 
     @Override
