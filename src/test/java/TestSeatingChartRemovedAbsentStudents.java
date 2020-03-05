@@ -16,42 +16,26 @@ public class TestSeatingChartRemovedAbsentStudents {
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
                 {
-                        // input
-                        TestSeatingChart.STUDENT_LIST,
-
-                        // input - allowedAbsences
-                        4,
-
-                        // output - removedStudents [ removeAbsentStudents(allowedAbsences) ]
-                        3,
-
-                        // output - removedSeatingChart
-                        "Karen(3) Lester(1) Glen(2) Danny(3) \nLiz(1) null null null \nPaul(4) null David(1) null \n",
+                        TestSeatingChart.STUDENT_LIST,  // input
+                        4,                              // input - allowedAbsences
+                        3,                              // output - removedStudents [ removeAbsentStudents(allowedAbsences) ]
+                        "Karen(3) Lester(1) Glen(2) Danny(3) \n" +
+                        "Liz(1) null null null \n" +
+                        "Paul(4) null David(1) null \n",// output - removedSeatingChart
                 },
         });
     }
+    @Parameterized.Parameter public List<Student> list;
+    @Parameterized.Parameter(1) public int allowedAbsences;
+    @Parameterized.Parameter(2) public int removedStudents;
+    @Parameterized.Parameter(3) public String removedSeatingChart;
 
-    @Parameterized.Parameter
-    public List<Student> list;
-
-    @Parameterized.Parameter(1)
-    public int allowedAbsences;
-
-    @Parameterized.Parameter(2)
-    public int removedStudents;
-
-    @Parameterized.Parameter(3)
-    public String removedSeatingChart;
-
-    @Test
-    public void testRemoveAbsentStudents() {
+    @Test public void testRemoveAbsentStudents() {
         SeatingChart seatingChart = new SeatingChart(list, 3, 4);
         int result = seatingChart.removeAbsentStudents(allowedAbsences);
         Assert.assertEquals(removedStudents, result);
     }
-
-    @Test
-    public void testRemovedSeatingChart() {
+    @Test public void testRemovedSeatingChart() {
         SeatingChart seatingChart = new SeatingChart(list, 3, 4);
         seatingChart.removeAbsentStudents(allowedAbsences);
         Assert.assertEquals(removedSeatingChart, seatingChart.toString());

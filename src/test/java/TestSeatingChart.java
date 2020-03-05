@@ -11,7 +11,6 @@ import java.util.List;
 
 @RunWith(Parameterized.class)
 public class TestSeatingChart {
-
     public static final List<Student> STUDENT_LIST = Arrays.asList(
             new Student("Karen", 3),
             new Student("Liz", 1),
@@ -29,20 +28,15 @@ public class TestSeatingChart {
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
                     {
-                        // input
-                        STUDENT_LIST,
-
-                        // output - expectedSeatingChart
-                        "Karen(3) Lester(1) Glen(2) Danny(3) \nLiz(1) Henry(5) Fran(6) null \nPaul(4) Renee(9) David(1) null \n",
+                        STUDENT_LIST, // input
+                        "Karen(3) Lester(1) Glen(2) Danny(3) \n" + // output - expectedSeatingChart
+                        "Liz(1) Henry(5) Fran(6) null \n" +
+                        "Paul(4) Renee(9) David(1) null \n",
                     },
         });
     }
-
-    @Parameterized.Parameter
-    public List<Student> list;
-
-    @Parameterized.Parameter(1)
-    public String expectedSeatingChart;
+    @Parameterized.Parameter    public List<Student> list;
+    @Parameterized.Parameter(1) public String expectedSeatingChart;
 
     @Test
     public void testToString() {
