@@ -1,5 +1,6 @@
 package ca.ciccc;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SeatingChart {
@@ -28,8 +29,15 @@ public class SeatingChart {
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
-
+        this.seats = new Student[rows][cols];
+        int count  = 0;
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+                if (count >= studentList.size()) break;
+                this.seats[j][i] = studentList.get(count);
+                count ++;
+            }
+        }
     }
 
     /**
@@ -47,9 +55,17 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
-
-        return 0;
+        int count = 0;
+        for (int i = 0; i < this.seats.length; i++) {
+            for (int j = 0; j < this.seats[i].length; j++) {
+                if (this.seats[i][j] == null) continue;
+                if (this.seats[i][j].getAbsenceCount() > allowedAbsences) {
+                    this.seats[i][j] = null;
+                    count ++;
+                }
+            }
+        }
+        return count;
     }
 
     @Override
