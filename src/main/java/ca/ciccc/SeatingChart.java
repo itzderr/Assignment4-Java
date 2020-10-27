@@ -1,5 +1,7 @@
 package ca.ciccc;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SeatingChart {
@@ -28,8 +30,26 @@ public class SeatingChart {
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
 
+        Student [][] seats = new Student[rows][cols];                   // declare 2d array made of Student object
+        int min = 0;
+        int max = studentList.size();
+
+        for (int c = 0; c < cols; c++){
+            for (int r = 0; r < rows; r++){
+                if (min < max && min < (rows * cols)) {
+                    seats[r][c] = studentList.get(min);
+                    min += 1;
+                } else {
+                    seats[r][c] = null;
+                }
+            }
+        }
+        this.seats = seats;
+    }
+
+    public Student[][] getSeats() {
+        return seats;
     }
 
     /**
@@ -47,12 +67,23 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
+        int removedCount = 0;
+        for (int row = 0; row < getSeats().length; row++){
+            for (int col = 0; col < getSeats()[row].length; col++){
 
-        return 0;
+               if (seats[row][col] == null){
+                   seats[row][col] = null;
+               }
+               else if (seats[row][col].getAbsenceCount() > allowedAbsences){
+                   seats[row][col] = null;
+                   removedCount += 1;
+               }
+            }
+        }
+        return removedCount;
     }
 
-    @Override
+        @Override
     public String toString() {
         String result = "";
         for(Student[] row: seats) {
