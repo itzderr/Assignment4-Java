@@ -10,4 +10,5 @@ import org.junit.runners.Suite;
         TestSeatingChart.class,
         TestSeatingChartRemovedAbsentStudents.class,
 })
-public class TestAll { }
+public class TestAll {
+}

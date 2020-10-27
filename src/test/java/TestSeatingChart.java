@@ -24,25 +24,23 @@ public class TestSeatingChart {
             new Student("David", 1),
             new Student("Danny", 3)
     );
+    @Parameterized.Parameter
+    public List<Student> list;
+    @Parameterized.Parameter(1)
+    public String expectedSeatingChart;
 
     @Parameterized.Parameters(name = "{index}: @ca.ciccc.SeatingChart.toString()")
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
-                    {
+        return Arrays.asList(new Object[][]{
+                {
                         // input
                         STUDENT_LIST,
 
                         // output - expectedSeatingChart
                         "Karen(3) Lester(1) Glen(2) Danny(3) \nLiz(1) Henry(5) Fran(6) null \nPaul(4) Renee(9) David(1) null \n",
-                    },
+                },
         });
     }
-
-    @Parameterized.Parameter
-    public List<Student> list;
-
-    @Parameterized.Parameter(1)
-    public String expectedSeatingChart;
 
     @Test
     public void testToString() {

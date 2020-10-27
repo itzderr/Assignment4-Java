@@ -12,9 +12,18 @@ import java.util.List;
 @RunWith(Parameterized.class)
 public class TestSeatingChartRemovedAbsentStudents {
 
+    @Parameterized.Parameter
+    public List<Student> list;
+    @Parameterized.Parameter(1)
+    public int allowedAbsences;
+    @Parameterized.Parameter(2)
+    public int removedStudents;
+    @Parameterized.Parameter(3)
+    public String removedSeatingChart;
+
     @Parameterized.Parameters(name = "{index}: @ca.ciccc.SeatingChart.toString()")
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][] {
+        return Arrays.asList(new Object[][]{
                 {
                         // input
                         TestSeatingChart.STUDENT_LIST,
@@ -30,18 +39,6 @@ public class TestSeatingChartRemovedAbsentStudents {
                 },
         });
     }
-
-    @Parameterized.Parameter
-    public List<Student> list;
-
-    @Parameterized.Parameter(1)
-    public int allowedAbsences;
-
-    @Parameterized.Parameter(2)
-    public int removedStudents;
-
-    @Parameterized.Parameter(3)
-    public String removedSeatingChart;
 
     @Test
     public void testRemoveAbsentStudents() {
