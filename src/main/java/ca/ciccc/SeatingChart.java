@@ -29,7 +29,26 @@ public class SeatingChart {
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
+        seats = new Student[rows][cols];
+        int studentListIndex = 0;
 
+        // create (cols - 1) * rows matrix and assign values column by column
+        for (int c = 0; c < cols - 1; c++) {
+            for (int r = 0; r < rows; r++) {
+                seats[r][c] = studentList.get(studentListIndex);
+                studentListIndex += 1;
+            }
+        }
+        // in the last column, assign remaining students from studentList
+        // and fill in the empty cell with null
+        for (int r = 0; r < rows; r++) {
+            if (studentListIndex <= studentList.size() - 1) {
+                seats[r][cols - 1] = studentList.get(studentListIndex);
+                studentListIndex += 1;
+            } else {
+                seats[r][cols - 1] = null;
+            }
+        }
     }
 
     /**
@@ -48,8 +67,19 @@ public class SeatingChart {
      */
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
+        int expeledStudents = 0;
 
-        return 0;
+        for (int r = 0; r < seats.length; r++) {
+            for (int c = 0; c < seats[r].length; c++) {
+                if (seats[r][c] != null) {
+                    if (seats[r][c].getAbsenceCount() > allowedAbsences) {
+                        seats[r][c] = null;
+                        expeledStudents += 1;
+                    }
+                }
+            }
+        }
+        return expeledStudents;
     }
 
     @Override
@@ -63,4 +93,5 @@ public class SeatingChart {
         }
         return result;
     }
+
 }
