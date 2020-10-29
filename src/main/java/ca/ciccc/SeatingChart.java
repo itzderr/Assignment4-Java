@@ -29,7 +29,7 @@ public class SeatingChart {
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
-
+        // Thanks to Takayasu I could set this instance variable.
         this.seats = new Student[rows][cols];
         int index = 0;
         if (rows == 0 && cols == 0) {
