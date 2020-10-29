@@ -1,6 +1,6 @@
 package ca.ciccc;
 
-import java.util.List;
+import java.util.*;
 
 public class SeatingChart {
 
@@ -30,7 +30,24 @@ public class SeatingChart {
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
 
+        this.seats = new Student[rows][cols];
+        int index = 0;
+        if (rows == 0 && cols == 0) {
+            return;
+        } else {
+            for (int i = 0; i < cols; i++) {
+                for (int j = 0; j < rows; j++) {
+                    if(index < studentList.size()){
+                        seats[j][i] = studentList.get(index);
+                        index += 1;
+                    }else{
+                        return;
+                    }
+                }
+            }
+        }
     }
+
 
     /**
      * Removes students who have more than a given number of absences from the seating chart,
@@ -49,7 +66,18 @@ public class SeatingChart {
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
 
-        return 0;
+        for(int i = 0; i <= seats.length - 1; i++){
+            for(int j = 0; j <= seats[i].length - 1; j++){
+                if(seats[i][j] == null){
+                    continue;
+                }else{
+                    if(seats[i][j].getAbsenceCount() > allowedAbsences){
+                        seats[i][j] = null;
+                    }
+                }
+            }
+        }
+        return seats.length;
     }
 
     @Override
