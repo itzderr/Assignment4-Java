@@ -67,19 +67,16 @@ public class SeatingChart {
 
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
-        int remove = 0; //int para iniciar a los que se van a quitar
-        for(int i =0; i < seats.length; i++){ //Recorremos la longitud del array 2D para ver quién está - 1D
-            for(int j = 0; j < seats.length; j++){//Recorremos la longitud del array 2D para ver quién está - 2D
-                Student moreAbsences = seats[i][j]; //hay que ver quién tiene más ausencias de la clase[i][j]
-                if(moreAbsences.getAbsenceCount() > allowedAbsences){ //if-->si nº de las ausencias que
-                    // extraemos de la lista de ausencias es mayor que
-                    // el numero de ausencias permitidas
-                    seats[i][j] = null; //los asientos de clase en que el numero que se pasen
-                    // de ausencias permitidas se pondrá null
-                remove++;} //en el caso de que no se haya recorrido toda la clase
+        int remove = 0;
+        for(int i =0; i < seats.length; i++){
+            for(int j = 0; j < seats.length; j++){
+                Student moreAbsences = seats[i][j];
+                if(moreAbsences.getAbsenceCount() > allowedAbsences){
+                    seats[i][j] = null;
+                remove++;}
             }
         }
-        return remove; //Devuelve remove que son los que no están porque son null al pasar de ausencias
+        return remove;
     }
 
     @Override
