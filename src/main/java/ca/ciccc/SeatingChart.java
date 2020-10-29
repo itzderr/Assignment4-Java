@@ -1,5 +1,6 @@
 package ca.ciccc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeatingChart {
@@ -8,6 +9,7 @@ public class SeatingChart {
      * seats[r][c] represents the Student in row r and column c in the classroom.
      */
     private Student[][] seats;
+    //private List<Student> studentList;
 
     /**
      * Creates a seating chart with the given number of rows and columns from the
@@ -29,8 +31,23 @@ public class SeatingChart {
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
-
+         seats = new Student[rows][cols];
+        //this.studentList = studentList;
+        int studentIndex = 0;
+        for(int i = 0; i < cols; i++){
+            for(int j = 0; j < rows; j++){
+                if(studentIndex < studentList.size()){
+                    seats[j][i] = studentList.get(studentIndex);
+                    studentIndex++;
+                }
+            }
+        }
     }
+
+
+
+
+
 
     /**
      * Removes students who have more than a given number of absences from the seating chart,
@@ -46,10 +63,23 @@ public class SeatingChart {
      *   - No student in {@code seats} has more than {@code allowedAbsences} absences.
      *   - Entries without students contain {@code null}.
      */
+
+
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
-
-        return 0;
+        int remove = 0; //int para iniciar a los que se van a quitar
+        for(int i =0; i < seats.length; i++){ //Recorremos la longitud del array 2D para ver quién está - 1D
+            for(int j = 0; j < seats.length; j++){//Recorremos la longitud del array 2D para ver quién está - 2D
+                Student moreAbsences = seats[i][j]; //hay que ver quién tiene más ausencias de la clase[i][j]
+                if(moreAbsences.getAbsenceCount() > allowedAbsences){ //if-->si nº de las ausencias que
+                    // extraemos de la lista de ausencias es mayor que
+                    // el numero de ausencias permitidas
+                    seats[i][j] = null; //los asientos de clase en que el numero que se pasen
+                    // de ausencias permitidas se pondrá null
+                remove++;} //en el caso de que no se haya recorrido toda la clase
+            }
+        }
+        return remove; //Devuelve remove que son los que no están porque son null al pasar de ausencias
     }
 
     @Override
