@@ -28,8 +28,16 @@ public class SeatingChart {
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
+        this.seats = new Student[rows][cols];
 
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                int index = i + (j * rows);
+                if (index < studentList.size()) {
+                    this.seats[i][j] = studentList.get(index);
+                }
+            }
+        }
     }
 
     /**
@@ -47,9 +55,17 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
+        int count = 0;
+        for (Student[] rowStudents : this.seats) {
+            for (int j = 0; j < rowStudents.length; j++) {
+                if (rowStudents[j] != null && rowStudents[j].getAbsenceCount() > allowedAbsences) {
+                    rowStudents[j] = null;
+                    count++;
+                }
+            }
+        }
 
-        return 0;
+        return count;
     }
 
     @Override
