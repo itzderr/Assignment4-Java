@@ -1,6 +1,9 @@
 package ca.ciccc;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class SeatingChart {
 
@@ -30,6 +33,24 @@ public class SeatingChart {
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
 
+        seats = new Student[rows][cols];
+        // iterator for studentList
+        int k = 0;
+
+        for (int i = 0; i < cols; i++) {
+            for (int j = 0; j < rows; j++) {
+
+                if (k < studentList.size()) {
+                    seats[j][i] = studentList.get(k);
+                    k++;
+                } else {
+                    seats[j][i] = null;
+                }
+
+            }
+
+        }
+
     }
 
     /**
@@ -48,8 +69,17 @@ public class SeatingChart {
      */
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
+        int count = 0;
 
-        return 0;
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats.length; j++) {
+                if (seats[i][j].getAbsenceCount() > allowedAbsences) {
+                    seats[i][j] = null;
+                    count ++;
+                }
+            }
+        }
+        return count;
     }
 
     @Override
