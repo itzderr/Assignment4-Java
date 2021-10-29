@@ -8,10 +8,12 @@ public class Student {
     private int absenceCount;
 
     public Student(String id, String name) {
+
         this(id, name, 0);
     }
 
     public Student(String name, int absenceCount) {
+
         this("#TEST", name, absenceCount);
     }
 
@@ -22,22 +24,27 @@ public class Student {
     }
 
     public String getId() {
+
         return id;
     }
 
     public void setId(String id) {
+
         this.id = id;
     }
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
     public int getAbsenceCount() {
+
         return absenceCount;
     }
 
