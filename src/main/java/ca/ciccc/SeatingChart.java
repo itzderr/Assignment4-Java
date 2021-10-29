@@ -3,11 +3,40 @@ package ca.ciccc;
 import java.util.List;
 
 public class SeatingChart {
+    public static void main(String[] args) {
+        int[][] seats = new int[0][10];
+        seats[0][0] = 3;
+        seats[0][1] = 1;
+        seats[0][2] = 4;
+        seats[0][3] = 1;
+        seats[0][4] = 5;
+        seats[0][5] = 9;
+        seats[0][6] = 2;
+        seats[0][7] = 6;
+        seats[0][8] = 1;
+        seats[0][9] = 3;
+
+        for (int r = 0; r<=10; r++); {
+            for (int c = 0; c<=0; c++)
+            System.out.println();
+        }
+        for (int[] row : seats) {
+            for (int seat : row) {
+                System.out.print(seat + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void seatList() {
+        String[][] seats = {{"Karen"},{"Liz"},{"Paul"},{"Lester"},{"Henry"},{"Renee"},{"Glen"},{"Fran"},{"David"},{"Danny"} };
+    }
 
     /**
      * seats[r][c] represents the Student in row r and column c in the classroom.
      */
     private Student[][] seats;
+
 
     /**
      * Creates a seating chart with the given number of rows and columns from the
