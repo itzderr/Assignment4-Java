@@ -9,6 +9,7 @@ public class SeatingChart {
      */
     private Student[][] seats;
 
+
     /**
      * Creates a seating chart with the given number of rows and columns from the
      * students in {@code studentList}. Empty seats in the seating chart are represented
@@ -18,8 +19,7 @@ public class SeatingChart {
      * @param cols the number of columns of seats in the classroom.
      *
      * Pre-condition: rows > 0; cols > 0;
-     *               rows * cols >= studentList.size();
-     *
+     *               rows * cols >= studentList.siz
      * Post-condition:
      *             - Students appear in the seating chart in the same order as they appear
      *               in {@code studentList}, starting at {@code seats[0][0]}.
@@ -29,7 +29,16 @@ public class SeatingChart {
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
-
+       seats = new Student[rows][cols];
+       int k = 0;
+       for (int  j = 0; j <= cols - 1; j++) {
+            for (int i = 0; i <= rows - 1; i++) {
+                if ( k <= studentList.size() - 1)
+                {  seats[i][j] = studentList.get(k);
+                   k++;
+                }
+            }
+        }
     }
 
     /**
@@ -48,8 +57,18 @@ public class SeatingChart {
      */
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
-
-        return 0;
+        int numberAbsences = 0;
+        for (int  i = 0; i <= seats.length - 1; i++) {
+            for (int j = 0; j <= seats[i].length - 1; j++) {
+                Student k = seats[i][j];
+                if (k != null & k.getAbsenceCount() > allowedAbsences)
+                {
+                    seats[i][j] = null;
+                    numberAbsences += 1;
+                }
+            }
+        }
+        return numberAbsences;
     }
 
     @Override
