@@ -28,8 +28,18 @@ public class SeatingChart {
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
-
+        seats = new Student[rows][cols];
+        int cntRow = 0;
+        int cntCol = 0;
+        for(Student s : studentList){
+            seats[cntRow][cntCol] = s;
+            ++cntRow;
+            if(cntRow == rows)
+            {
+                cntRow = 0;
+                ++cntCol;
+            }
+        }
     }
 
     /**
@@ -47,9 +57,22 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
+        int cntStudent = 0;
 
-        return 0;
+        for(int r = 0; r < seats.length; ++r){
+            for(int c = 0; c < seats[r].length; ++c){
+                if(seats[r][c] == null)
+                    continue;
+
+                if(allowedAbsences < seats[r][c].getAbsenceCount())
+                {
+                    seats[r][c] = null;
+                    ++cntStudent;
+                }
+            }
+        }
+
+        return cntStudent;
     }
 
     @Override
