@@ -1,5 +1,6 @@
 package ca.ciccc;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SeatingChart {
@@ -10,7 +11,7 @@ public class SeatingChart {
     private Student[][] seats;
 
     /**
-     * Creates a seating chart with the given number of rows and columns from the
+     * Create a seating chart with the given number of rows and columns from the
      * students in {@code studentList}. Empty seats in the seating chart are represented
      * by {@code null}.
      * @param studentList the list of students.
@@ -28,8 +29,20 @@ public class SeatingChart {
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
+        seats = new Student[rows][cols];
 
+        for (int i = 0; i < rows; i++) {
+            int counter = i;
+            for (int j = 0; j < cols; j++) {
+                if (counter >= studentList.size()) {
+                    seats[i][j] = null;
+                } else {
+                    Student aluno = studentList.get(counter);
+                    seats[i][j] = aluno;
+                }
+                counter += 3;
+            }
+        }
     }
 
     /**
@@ -47,9 +60,19 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
+        int studentsRemoved = 0;
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats[i].length; j++) {
+                if (seats[i][j] != null) {
+                    if (seats[i][j].getAbsenceCount() > allowedAbsences) {
+                        seats[i][j] = null;
+                        studentsRemoved++;
+                    }
+                }
+            }
+        }
 
-        return 0;
+        return studentsRemoved;
     }
 
     @Override
