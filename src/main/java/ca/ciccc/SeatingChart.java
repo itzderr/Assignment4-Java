@@ -4,6 +4,8 @@ import java.util.List;
 
 public class SeatingChart {
 
+    private static final int INCREMENT_VALUE_TO_NEXT_STUDENT= 3;
+
     /**
      * seats[r][c] represents the Student in row r and column c in the classroom.
      */
@@ -22,14 +24,24 @@ public class SeatingChart {
      *
      * Post-condition:
      *             - Students appear in the seating chart in the same order as they appear
-     *               in {@code studentList}, starting at {@code seats[0][0]}.
+     *               in {@code studentList}, starting  {@code seats[0][0]}.
      *             - {@code seats} is filled column by column from {@code studentList}, followed by
      *               any empty seats (represented by {@code null}.
      *             - {@code studentList} is unchanged.
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
-        // TODO: Your code goes here.
-
+        seats = new Student[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            int counter = i;
+            for (int j = 0; j < cols; j++) {
+                if (counter >= studentList.size()) {
+                    seats[i][j] = null;
+                } else {
+                    seats[i][j] = studentList.get(counter);
+                }
+                counter += INCREMENT_VALUE_TO_NEXT_STUDENT;
+            }
+        }
     }
 
     /**
@@ -47,9 +59,16 @@ public class SeatingChart {
      *   - Entries without students contain {@code null}.
      */
     public int removeAbsentStudents(int allowedAbsences) {
-        // TODO: your code goes here.
-
-        return 0;
+        int studentsRemoved = 0;
+        for (int i = 0; i < seats.length; i++) {
+            for (int j = 0; j < seats[i].length; j++) {
+                if(seats[i][j] != null && seats[i][j].getAbsenceCount() > allowedAbsences) {
+                    seats[i][j] = null;
+                    studentsRemoved = studentsRemoved + 1;
+                }
+            }
+        }
+        return studentsRemoved;
     }
 
     @Override
