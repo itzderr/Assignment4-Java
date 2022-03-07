@@ -66,6 +66,7 @@ public class SeatingChart {
         if (Student.getAbsenceCount() > allowedAbsences) {
             // need to exchange the value of Student with null
             // this step I have no Idea how >.<
+            //
             studentsRemoved++;
         }
         return studentsRemoved;
