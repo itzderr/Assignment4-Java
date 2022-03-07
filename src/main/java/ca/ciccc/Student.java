@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Student {
     private String id;
     private String name;
-    private int absenceCount;
+    private static int absenceCount;
 
     public Student(String id, String name) {
         this(id, name, 0);
@@ -18,7 +18,7 @@ public class Student {
     public Student(String id, String name, int absenceCount) {
         this.id = id;
         this.name = name;
-        this.absenceCount = absenceCount;
+        Student.absenceCount = absenceCount;
     }
 
     public String getId() {
@@ -37,12 +37,12 @@ public class Student {
         this.name = name;
     }
 
-    public int getAbsenceCount() {
+    public static int getAbsenceCount() {
         return absenceCount;
     }
 
     public void setAbsenceCount(int absenceCount) {
-        this.absenceCount = absenceCount;
+        Student.absenceCount = absenceCount;
     }
 
     @Override

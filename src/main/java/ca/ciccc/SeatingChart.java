@@ -1,5 +1,6 @@
 package ca.ciccc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeatingChart {
@@ -29,7 +30,19 @@ public class SeatingChart {
      */
     public SeatingChart(List<Student> studentList, int rows, int cols) {
         // TODO: Your code goes here.
-
+        if (rows * cols >= studentList.size()){
+            List <Student> studentList1 = new ArrayList<>();
+            for (int i = 0; i <= rows; i++){
+                for (int j = 0; j <= cols; j++){
+                    studentList1.add((Student) studentList);
+                    assert false;
+                    seats[i][j] = studentList1.get(i);
+                    if (studentList1.size()-1 > cols){
+                        seats[i][j] = null;
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -48,8 +61,14 @@ public class SeatingChart {
      */
     public int removeAbsentStudents(int allowedAbsences) {
         // TODO: your code goes here.
-
-        return 0;
+        allowedAbsences = 3;
+        int studentsRemoved = 0;
+        if (Student.getAbsenceCount() > allowedAbsences) {
+            // need to exchange the value of Student with null
+            // this step I have no Idea how >.<
+            studentsRemoved++;
+        }
+        return studentsRemoved;
     }
 
     @Override
